@@ -20,7 +20,7 @@ class output
 
     public function import_ip($file)
     {
-        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR;
+        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR . '../storages';
         $newPathUploadFile = $baseDirectoryFile . basename($_FILES['file']['name']);
         move_uploaded_file($_FILES['file']['tmp_name'], $newPathUploadFile);
         $importedTickets = (new FastExcel)->import($newPathUploadFile);
