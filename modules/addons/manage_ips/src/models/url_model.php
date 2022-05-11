@@ -1,23 +1,24 @@
 <?php
 
+namespace ASharifnezhad\ManageIps\models;
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-class ip_model
+
+class url_model
 {
-    private $table = 'manage_ips';
+    private $table = 'manage_urls';
 
     public function get()
     {
         return Capsule::table($this->table)->get();
     }
 
-    public function create($data)
+    public function create($url)
     {
         return Capsule::table($this->table)
             ->updateOrInsert([
-                'ip' => $data['ip']
-            ], [
-                'status' => $data['status']
+                'url' => $url
             ]);
     }
 

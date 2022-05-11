@@ -1,18 +1,18 @@
 <?php
-require_once __DIR__ . DIRECTORY_SEPARATOR . '../models/url_model.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . '../models/ip_model.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'mainController.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'output.php';
 
+namespace ASharifnezhad\ManageIps\controllers;
 
+use ASharifnezhad\ManageIps\models\ip_model;
+use ASharifnezhad\ManageIps\models\url_model;
 use Illuminate\Database\Capsule\Manager as Capsule;
+
 
 class manage_ip
 {
-    private ip_model $ip_model;
-    private url_model $url_model;
-    private mainController $mainController;
-    private output $output;
+    private $ip_model;
+    private $url_model;
+    private $mainController;
+    private $output;
 
     public function __construct()
     {
@@ -59,10 +59,9 @@ class manage_ip
         $blocked_ip = $this->checked_blocked_ip($vars['client']['ip']);
         if (!$blocked_ip) {
             $iranian_ip = $this->checked_iranian_ips($vars['client']['ip']);
-
         }
         if ($blocked_ip->status == 'blocked' || $iranian_ip) {
-            require_once __DIR__ . DIRECTORY_SEPARATOR . '../templates/clientarea/403.tpl';
+            $this->mainController->clientareaRender('403.tpl');
             die();
         }
     }

@@ -1,1 +1,1 @@
-<?php echo \WHMCS\Module\Addon\AddonModule\controllers\mainController::loadCss('css/styles.css') ?>
+<?php echo \ASharifnezhad\ManageIps\controllers\mainController::loadCss('css/styles.css') ?>

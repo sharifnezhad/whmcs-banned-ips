@@ -1,5 +1,15 @@
 {
-    "require": {
-        "rap2hpoutre/fast-excel": "^3.2"
-    }
+    "name": "a.sharifnezhad/manage_ips",
+    "autoload": {
+        "psr-4": {
+            "ASharifnezhad\\ManageIps\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sharifnezhad",
+            "email": "a.sharifnezhad@greenweb.ir"
+        }
+    ],
+    "require": {}
 }

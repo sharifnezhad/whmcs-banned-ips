@@ -1,5 +1,10 @@
 <?php
-include __DIR__ . DIRECTORY_SEPARATOR . "../vendor/autoload.php";
+//include __DIR__ . DIRECTORY_SEPARATOR . "../../vendor/autoload.php";
+
+namespace ASharifnezhad\ManageIps\controllers;
+
+use ASharifnezhad\ManageIps\models\ip_model;
+use ASharifnezhad\ManageIps\models\url_model;
 use Rap2hpoutre\FastExcel\FastExcel;
 
 class output
@@ -15,7 +20,7 @@ class output
 
     public function import_ip($file)
     {
-        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR . '../storages/';
+        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR;
         $newPathUploadFile = $baseDirectoryFile . basename($_FILES['file']['name']);
         move_uploaded_file($_FILES['file']['tmp_name'], $newPathUploadFile);
         $importedTickets = (new FastExcel)->import($newPathUploadFile);
@@ -23,12 +28,13 @@ class output
             $this->ip_model->create($data);
         });
         unlink($newPathUploadFile);
-        
+
         return true;
     }
+
     public function import_url($file)
     {
-        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR . '../storages/';
+        $baseDirectoryFile = __DIR__ . DIRECTORY_SEPARATOR;
         $newPathUploadFile = $baseDirectoryFile . basename($_FILES['file']['name']);
         move_uploaded_file($_FILES['file']['tmp_name'], $newPathUploadFile);
         $importedTickets = (new FastExcel)->import($newPathUploadFile);

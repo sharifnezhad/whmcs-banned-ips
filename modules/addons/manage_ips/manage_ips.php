@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+//use Illuminate\Database\Capsule\Manager as Capsule;
 
 function manage_ips_config()
 {
@@ -46,12 +46,9 @@ function manage_ips_output($vars)
     $action = $_GET['action'] ?? 'manage_ip/url';
     list($controller, $method) = explode('/', $action);
 
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'controllers/mainController.php';
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'models/ip_model.php';
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'models/url_model.php';
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'controllers/output.php';
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'controllers/' . $controller . '.php';
-    $object = new $controller();
+    require_once __DIR__ . DIRECTORY_SEPARATOR. 'vendor/autoload.php';
+    $namespace="\\ASharifnezhad\\ManageIps\\controllers\\". $controller;
+    $object = new $namespace();
 
     return $object->$method();
 }
